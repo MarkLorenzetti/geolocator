@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const { campgroundSchema } = require('../schemas');
 const review = require('./review');
 const Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate-v2');
 
-//https://res.cloudinary.com/marcoyelpcamp2021/image/upload/w_500/v1635850065/Yelpcamp/fnuciplj6d2sr2eq2ryv.jpg
+
 
 const ImageSchema = new Schema({
     url: String,
@@ -58,5 +59,7 @@ CampgroundSchema.post('findOneAndDelete', async function(doc){
         })
     }
 })
+
+CampgroundSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Campground', CampgroundSchema);
